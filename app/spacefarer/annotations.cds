@@ -1,4 +1,4 @@
-using { SpaceFarerService } from '../../srv/SpaceFarerService';
+using {SpaceFarerService} from '../../srv/SpaceFarerService';
 
 annotate SpaceFarerService.SpaceFarer with @(
   UI.SelectionFields                     : [
@@ -21,6 +21,11 @@ annotate SpaceFarerService.SpaceFarer with @(
     {
       $Type : 'UI.DataFieldForAnnotation',
       Target: '@UI.DataPoint#stardustCollectionSkill'
+    },
+    {
+        $Type : 'UI.DataFieldForAction',
+        Action : 'SpaceFarerService.launch',
+        Label : 'Launch',
     },
   ],
   UI.DataPoint #stardustCollectionSkill  : {
@@ -69,10 +74,10 @@ annotate SpaceFarerService.SpaceFarer with @(
       Target: '@UI.FieldGroup#Skills',
     },
     {
-        $Type : 'UI.ReferenceFacet',
-        Label : 'Affiliation',
-        ID : 'Affiliation',
-        Target : '@UI.FieldGroup#Affiliation',
+      $Type : 'UI.ReferenceFacet',
+      Label : 'Affiliation',
+      ID    : 'Affiliation',
+      Target: '@UI.FieldGroup#Affiliation',
     },
   ],
   UI.FieldGroup #BasicData               : {
@@ -90,11 +95,11 @@ annotate SpaceFarerService.SpaceFarer with @(
         $Type: 'UI.DataField',
         Value: emailAddress,
       },
-        {
-            $Type : 'UI.DataField',
-            Value : originPlanetName,
-            Label : 'originPlanetName',
-        },
+      {
+        $Type: 'UI.DataField',
+        Value: originPlanetName,
+        Label: 'Origin planet',
+      },
     ],
   },
   UI.FieldGroup #Skills                  : {
@@ -120,21 +125,28 @@ annotate SpaceFarerService.SpaceFarer with @(
     TypeName      : 'Space farer',
     TypeNamePlural: 'Space farers',
   },
-    UI.FieldGroup #Affiliation : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-            {
-                $Type : 'UI.DataField',
-                Value : departmentName,
-                Label : 'departmentName',
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : positionName,
-                Label : 'positionName',
-            },
-        ],
-    },
+  UI.FieldGroup #Affiliation             : {
+    $Type: 'UI.FieldGroupType',
+    Data : [
+      {
+        $Type: 'UI.DataField',
+        Value: departmentName,
+        Label: 'Department',
+      },
+      {
+        $Type: 'UI.DataField',
+        Value: positionName,
+        Label: 'Position',
+      },
+    ],
+  },
+    UI.Identification : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'SpaceFarerService.launch',
+            Label : 'Launch',
+        },
+    ],
 );
 
 annotate SpaceFarerService.SpaceFarer with {
@@ -143,6 +155,8 @@ annotate SpaceFarerService.SpaceFarer with {
   spaceSuitColor          @Common.Label: 'Spacesuite color';
   stardustCollectionSkill @Common.Label: 'Stardust collection';
   wormholeNavigationSkill @Common.Label: 'Wormhole navigation';
-  originPlanet            @Common.Label: 'Origin planet';
+  originPlanetName        @Common.Label: 'Origin planet';
   position                @Common.Label: 'Position';
+  departmentName          @Common.Label: 'Department';
+  positionName            @Common.Label: 'Position';
 };

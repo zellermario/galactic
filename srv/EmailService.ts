@@ -1,8 +1,16 @@
-import { log } from "@sap/cds";
+import { log, connect } from "@sap/cds";
 import { validate as isValidEmail } from "email-validator";
-import { SendLauchEmail, EmailService } from "#cds-models/EmailService";
+import { EmailService, SendLauchEmail } from "#cds-models/EmailService";
+import { SpaceFarerService, SpaceFarerLaunched } from "#cds-models/SpaceFarerService";
 
-const EmailServiceHandlers = (service: EmailService, ) => {
+const EmailServiceHandlers = async (service: EmailService) => {
+
+  const spaceFarerService = await connect.to(SpaceFarerService.name);
+
+  spaceFarerService.on(SpaceFarerLaunched.name, ({ data }) => {
+    const event = data as SpaceFarerLaunched;
+    service.SendLauchEmail(event.emailAddress);
+  })
 
   service.on(SendLauchEmail, async({ data: { emailAddress }, reject }) => {
     if (!emailAddress || !emailAddress.trim()) {
