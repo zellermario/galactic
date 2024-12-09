@@ -3,7 +3,7 @@ using { cuid } from '@sap/cds/common';
 namespace db;
 
 type RGBColor : String @assert.format : '^#[0-9a-f]{6}$';
-type SkillLevel : Integer @assert.range : [0, 100];
+type SkillLevel : Integer @assert.range : [0, 5];
 
 entity SpaceFarer : cuid {
   key ID                   : Integer;

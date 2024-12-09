@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch": "cds-tsx w"
+    "watch": "cds-tsx w",
+    "watch-spacefarer": "cds watch --open spacefarer/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"
@@ -35,5 +36,8 @@
       },
       "auth": "mocked"
     }
-  }
+  },
+  "sapux": [
+    "app/spacefarer"
+  ]
 }
