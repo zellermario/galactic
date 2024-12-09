@@ -3,37 +3,34 @@ using { cuid } from '@sap/cds/common';
 namespace db;
 
 type RGBColor : String @assert.format : '^#[0-9a-f]{6}$';
+type SkillLevel : Integer @assert.range : [0, 100];
 
 entity SpaceFarer : cuid {
-  originPlanet          : Association to Planet;
-  spaceSuitColor        : RGBColor;
-  staffMembers          : Association to many StaffMember;
-  canCollectStarDust    : Boolean;
-  canNavigateWormHoles  : Boolean;
+  name                     : String @mandatory;
+  emailAddress             : String @(mandatory, assert.unique);
+  spaceSuitColor           : RGBColor @mandatory;
+  stardustCollectionSkill  : SkillLevel @mandatory;
+  wormholeNavigationSkill  : SkillLevel @mandatory;
+  originPlanet             : Association to Planet @assert.target @assert.notNull;
+  position                 : Association to Position @assert.target;
 }
 
 entity Planet : cuid {
-  name        : String;
-  coordinate  : CosmicCoordinate
-}
-
-entity StaffMember : cuid {
-  firstName : String;
-  lastName  : String;
-  position  : Association to Position;
+  name        : String @mandatory;
+  coordinate  : CosmicCoordinate @mandatory;
 }
 
 entity Position : cuid {
-  name       : String;
-  department : Association to Department;
+  name       : String @mandatory;
+  department : Association to Department @assert.target @assert.notNull;
 }
 
 entity Department : cuid {
-  name : String;
+  name : String @mandatory;
 }
 
 type CosmicCoordinate {
-  x: Decimal(64, 32);
-  y: Decimal(64, 32);
-  z: Decimal(64, 32);
+  x: Decimal(32, 16);
+  y: Decimal(32, 16);
+  z: Decimal(32, 16);
 }
