@@ -13,5 +13,6 @@
         "./@cds-models/*"
       ]
     }
-  }
+  },
+  "include": ["node_modules/@cap-js/cds-types"]
 }
