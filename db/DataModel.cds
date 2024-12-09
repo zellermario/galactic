@@ -6,6 +6,7 @@ type RGBColor : String @assert.format : '^#[0-9a-f]{6}$';
 type SkillLevel : Integer @assert.range : [0, 100];
 
 entity SpaceFarer : cuid {
+  key ID                   : Integer;
   name                     : String @mandatory;
   emailAddress             : String @(mandatory, assert.unique);
   spaceSuitColor           : RGBColor @mandatory;
@@ -15,18 +16,21 @@ entity SpaceFarer : cuid {
   position                 : Association to Position @assert.target;
 }
 
-entity Planet : cuid {
+entity Planet {
+  key ID      : Integer;
   name        : String @mandatory;
   coordinate  : CosmicCoordinate @mandatory;
 }
 
-entity Position : cuid {
+entity Position {
+  key ID     : Integer;
   name       : String @mandatory;
   department : Association to Department @assert.target @assert.notNull;
 }
 
 entity Department : cuid {
-  name : String @mandatory;
+  key ID : String;
+  name   : String @mandatory;
 }
 
 type CosmicCoordinate {
