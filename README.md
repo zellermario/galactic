@@ -1,25 +1,14 @@
-# Getting Started
+# How to start the application
 
-Welcome to your new project.
+In the root folder:
+1. First run `npm install` to install the required dependencies.
+2. Then emit `cds deploy --to sqlite:galactic.db`. This will deploy the database schema and some dummy data to an sqlite file at `./galactic.db`. This will serve as the database of the application.
+3. Finally run `npm run start` to start the application. If you would like the application to restart on file changes, use `npm run watch` instead.
 
-It contains these folders and files, following our recommended project layout:
+# How to access the application
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+The application will be available at http://localhost:4004, where you can navigate to the Fiori web application or browse the OData endpoints.
 
+You need to use HTTP Basic Authentication to access the application or the API endpoints. The available mock users are the same as the ones listed [here](https://cap.cloud.sap/docs/node.js/authentication#mock-users). Any password gets accepted.
 
-## Next Steps
-
-- Open a new terminal and run `cds watch`
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
-
-
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
+Since only those SpaceFarers are listed that come from the same planet as the authenticated user, you might wanna use `alice` or `bob` to log in, because their users already have a planet assigned to them in the `package.json` file.
