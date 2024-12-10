@@ -3,7 +3,12 @@ using {db} from '../db/DataModel';
 @(requires: 'authenticated-user')
 service SpaceFarerService {
 
-  @odata.draft.enabled
+  @(
+    odata.draft.enabled,
+    restrict: [
+      { grant: ['READ','WRITE'], where: '$user.originPlanetID = originPlanet_ID' }
+    ]
+  )
   entity SpaceFarer as
     projection on db.SpaceFarer {
       *,

@@ -34,7 +34,21 @@
           "database": "galactic.db"
         }
       },
-      "auth": "mocked"
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "alice": {
+            "attr": {
+              "originPlanetID": "0"
+            }
+          },
+          "bob": {
+            "attr": {
+              "originPlanetID": "3"
+            }
+          }
+        }
+      }
     }
   },
   "sapux": [
