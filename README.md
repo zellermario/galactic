@@ -2,8 +2,9 @@
 
 In the root folder:
 1. First run `npm install` to install the required dependencies.
-2. Then emit `cds deploy --to sqlite:galactic.db`. This will deploy the database schema and some dummy data to an sqlite file at `./galactic.db`. This will serve as the database of the application.
-3. Finally run `npm run start` to start the application. If you would like the application to restart on file changes, use `npm run watch` instead.
+2. Then run `cds-tsx build` to generate the required TypeScript files from the model.
+3. Then emit `cds deploy --to sqlite:galactic.db`. This will deploy the database schema and some dummy data to an sqlite file at `./galactic.db`. This will serve as the database of the application.
+4. Finally run `npm run start` to start the application. If you would like the application to restart on file changes, use `npm run watch` instead.
 
 # How to access the application
 
